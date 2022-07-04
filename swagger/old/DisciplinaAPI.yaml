@@ -1,0 +1,111 @@
+swagger: '2.0'
+info:
+  description: 'Servico de entidade Disciplina.'
+  version: 1.0.0
+  title: Disciplina
+  termsOfService: https://sid.redes.unb.br/terms/
+  contact:
+    email: pomsouza08@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: localhost:8280
+basePath: /sid/Trab1/Disciplinas
+tags:
+  - name: disciplina
+schemes:
+  - http
+paths:
+  /:
+    get:
+      tags:
+        - disciplina
+      summary: pesquisa disciplinas
+      description: 'Pesquisa disciplinas pelo parametros "nome" e "unidadeAcademica"'
+      operationId: pesquisar
+      produces:
+        - application/json
+      parameters:
+        - name: nome
+          in: query
+          description: Nome ou parte do nome da disciplina
+          required: false
+          type: string
+        - name: unidadeAcademica
+          in: query
+          description: Codigo da unidade academica da disciplina
+          required: false
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/Disciplinas'
+  /{codigo}:
+    get:
+      tags:
+        - disciplina
+      summary: consulta disciplina
+      description: 'Consulta uma disciplina pelo seu "codigo".'
+      operationId: addPet
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: codigo
+          in: path
+          description: Codigo da discioplina
+          required: true
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/Disciplina'
+        '404':
+          description: not found
+definitions:
+  UnidadeAcademica:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: ENE
+      nome:
+        type: string
+        example: DEPARTAMENTO DE ENGEHARIA ELETRICA
+  Disciplina:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: ENE0274
+      nome:
+        type: string
+        example: FUNDAMENTOS DE REDES
+      unidadeAcademica:
+        $ref: '#/definitions/UnidadeAcademica'
+      preRequisitos:
+        $ref: '#/definitions/Disciplinas'
+  DisciplinaShort:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: ENE0274
+      nome:
+        type: string
+        example: FUNDAMENTOS DE REDES
+      cargaHorariaTotal:
+        type: integer
+        example: 60
+      unidadeAcademica:
+        type: string
+        example: ENE
+  Disciplinas:
+    type: array
+    items:
+      $ref: '#/definitions/DisciplinaShort'

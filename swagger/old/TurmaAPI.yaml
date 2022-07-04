@@ -1,0 +1,174 @@
+swagger: '2.0'
+info:
+  description: Servico de entidade Matricula
+  version: 1.0.0
+  title: TurmaAPI
+  termsOfService: https://sid.redes.unb.br/terms
+  contact:
+    email: brunoscholles@outlook.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: localhost:8280
+basePath: /sid/Trab1/Matricula
+tags:
+- name: Turma
+  description: Turma de Graduação da Universidade de Brasília
+schemes:
+- http
+paths:
+  /:
+    get:
+      tags:
+      - turma
+      summary: Consulta turma
+      description: Consulta turma pela disciplina e codigo
+      operationId: consultar
+      produces:
+      - application/json
+      parameters:
+        - name: disciplina
+          in: query
+          description: Disciplina
+          required: false
+          type: string
+        - name: codigo
+          in: query
+          description: Codigo
+          required: false
+          type: string
+      responses:
+        200:
+          description: ok
+          schema:
+            $ref: '#/definitions/TurmaShort'
+        400:
+          description: not found (dados nao encontrados)
+  
+
+  '/{codigo}/{disciplina}':
+    get:
+      tags:
+        - turma
+      summary: consulta uma turma pelo codigo
+      description: 'Consulta uma turma pelo codigo.'
+      operationId: consultarTurmaFluxo
+      produces:
+        - application/json
+      parameters:
+        - name: disciplina
+          in: path
+          description: Codigo da disciplina
+          required: true
+          type: string
+        - name: codigo
+          in: path
+          description: Codigo da turma
+          required: true
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/Turma'
+        '404':
+          description: not found (dados nao encontrados)
+
+
+definitions:
+  PeriodoLetivo:
+    type: object
+    properties:
+      ano:
+        type: integer
+        example: 2021
+        description: Ano referente
+      numero:
+        type: string
+        example: 2/2021
+        description: Periodo letivo vigente
+
+
+  UnidadeAcademica:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: ENE 
+      nome:
+        type: string
+        example: Departamento de Engenharia Elétrica
+        description: Nome do Departamento
+
+
+  Disciplina:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: ENE0209
+      nome:
+        type: string
+        example: PROCESSAMENTO DIGITAL DE IMAGENS
+        description: Nome da disciplina
+
+
+  Turma:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: A
+      numeroVagas: 
+        type: string
+        example: 30
+      NumeroMatricula:
+        type: string
+        example: 14
+      disciplina:
+        $ref: '#/definitions/Disciplina'
+      horaAula:
+        $ref: '#/definitions/HoraAula'
+      professor:
+        $ref: '#/definitions/Professor'
+      unidadeAcademica:
+        $ref: '#/definitions/UnidadeAcademica'
+      PeriodoLetivo:
+        $ref: '#/definitions/PeriodoLetivo'
+  
+
+  TurmaShort:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: A
+      horaAula:
+        $ref: '#/definitions/HoraAula'
+      disciplina:
+        $ref: '#/definitions/Disciplina'
+  
+
+  Professor:
+    type: object
+    properties:
+      matricula:
+        type: string
+        example: 100187562
+      nome:
+        type: string
+        example: MYLENE CHRISTINE QUEIROZ DE FARIAS
+        description: Nome do professor em questao
+  
+
+  HoraAula:
+    type: object
+    properties:
+      hora:
+        type: string
+        example: 16:00-17:50
+        description: Horario da aula em questao
+      dia:
+        type: string
+        example: Segunda
+        description: Dia da aula em questao

@@ -1,0 +1,246 @@
+swagger: '2.0'
+info:
+  description: Entidade de acesso às informações das disciplinas de graduação da UnB.
+  version: 1.0.0
+  title: CursoAPI
+  termsOfService: https://sid.redes.unb.br/terms/
+  contact:
+    email: pomsouza08@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: localhost:8280
+basePath: /sid/Trab1/cursos
+tags:
+  - name: curso
+schemes:
+  - http
+paths:
+  /:
+    get:
+      tags:
+        - curso
+      summary: pesquisa cursos
+      description: 'Pesquisa cursos pelo parametros "nome" e "unidadeAcademica"'
+      operationId: pesquisar
+      produces:
+        - application/json
+      parameters:
+        - name: nome
+          in: query
+          description: Nome ou parte do nome do curso
+          required: false
+          type: string
+        - name: unidadeAcademica
+          in: query
+          description: Codigo da unidade acadêmica do curso
+          required: false
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/Cursos'
+  /{codigo}:
+    get:
+      tags:
+        - curso
+      summary: consulta curso
+      description: 'Consulta um curso pelo seu "codigo".'
+      operationId: consultar
+      produces:
+        - application/json
+      parameters:
+        - name: codigo
+          in: path
+          description: Codigo do curso
+          required: true
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/Curso'
+        '404':
+          description: not found
+  /{codigo}/fluxo:
+    get:
+      tags:
+        - curso
+      summary: consulta o fluxo do curso
+      description: 'Consulta o fluxo do curso identificado pelo seu "codigo".'
+      operationId: consultarFluxo
+      produces:
+        - application/json
+      parameters:
+        - name: codigo
+          in: path
+          description: Codigo do curso
+          required: true
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/Fluxo'
+        '404':
+          description: not found
+  /{codigo}/fluxo/disciplinasFluxo/{disciplina}:
+    get:
+      tags:
+        - curso
+      summary: consulta uma disciplina do fluxo do curso
+      description: 'Consulta uma disciplina do fluxo do curso.'
+      operationId: consultarDisciplinaFluxo
+      produces:
+        - application/json
+      parameters:
+        - name: codigo
+          in: path
+          description: Codigo do curso
+          required: true
+          type: string
+        - name: disciplina
+          in: path
+          description: Codigo da disciplina
+          required: true
+          type: string
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: '#/definitions/DisciplinaFluxo'
+        '404':
+          description: not found
+definitions:
+  UnidadeAcademica:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: ENE
+      nome:
+        type: string
+        example: DEPARTAMENTO DE ENGENHARIA ELETRICA
+  UnidadesAcademicas:
+    type: array
+    items:
+      $ref: '#/definitions/UnidadeAcademica'
+  CargaHoraria:
+    type: object
+    properties:
+      obrigatoria:
+        type: integer
+        example: '3285'
+      optativaMinima:
+        type: integer
+        example: '760'
+      complementarMinima:
+        type: integer
+        example: '320'
+      minimaPeriodoLetivo:
+        type: integer
+        example: '240'
+      periodosMinimos:
+        type: integer
+        example: '10'
+      periodosMaximos:
+        type: integer
+        example: '20'
+      periodos:
+        type: integer
+        example: '6'
+  Curso:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: '6351'
+      coordenador:
+        type: string
+        example: PAULO GONDIM
+      nome:
+        type: string
+        example: ENGENHARIA ELETRICA
+      fluxo:
+        $ref: '#/definitions/Fluxo'
+      unidadesAcademicas:
+        $ref: '#/definitions/UnidadesAcademicas'
+      cargahoraria:
+        $ref: '#/definitions/CargaHoraria'
+  CursoShort:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: '6351'
+      nome:
+        type: string
+        example: ENGENHARIA ELETRICA
+      unidadesAcademicas:
+        $ref: '#/definitions/UnidadesAcademicas'
+  Cursos:
+    type: array
+    items:
+      $ref: '#/definitions/CursoShort'
+  Fluxo:
+    type: object
+    properties:
+      disciplinasFluxo:
+        type: array
+        items:
+          $ref: '#/definitions/DisciplinaFluxoShort'
+  DisciplinaFluxo:
+    type: object
+    properties:
+      periodo:
+        type: integer
+        example: 1
+      tipo:
+        type: string
+        example: OBR
+      disciplina:
+        $ref: '#/definitions/Disciplina'
+  DisciplinaFluxoShort:
+    type: object
+    properties:
+      periodo:
+        type: integer
+        example: 1
+      tipo:
+        type: string
+        example: OBR
+      disciplina:
+        $ref: '#/definitions/DisciplinaShort'
+  Disciplina:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: ENE0209
+      nome:
+        type: string
+        example: PROCESSAMENTO DIGITAL DE IMAGENS
+      unidadeAcademica:
+        $ref: '#/definitions/UnidadeAcademica'
+      preRequisitos:
+        $ref: '#/definitions/Disciplinas'
+  DisciplinaShort:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: ENE0209
+      nome:
+        type: string
+        example: PROCESSAMENTO DIGITAL DE IMAGENS
+      cargaHorariaTotal:
+        type: integer
+        example: 60
+      unidadeAcademica:
+        type: string
+        example: ENE
+  Disciplinas:
+    type: array
+    items:
+      $ref: '#/definitions/DisciplinaShort'
