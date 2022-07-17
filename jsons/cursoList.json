@@ -1,0 +1,18 @@
+[
+    {
+        "codigo": "X",
+        "nome": "ENGENHARIA DE REDES DE COMUNICAÇÃO",
+        "modalidade": "Presencial",
+        "grauAcademico": "Bacharelado",
+        "turno": "Diurno",
+        "sede": "Darcy Ribeiro"
+    },
+    {
+        "codigo": "Y",
+        "nome": "Engenharia de produção",
+        "modalidade": "Presencial",
+        "grauAcademico": "Bacharelado",
+        "turno": "Noturno",
+        "sede": "Darcy Ribeiro"
+    }
+]

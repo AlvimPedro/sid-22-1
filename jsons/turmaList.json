@@ -1,0 +1,20 @@
+[
+    {
+        "codigo": "A",
+        "vagasOfertadadas": 60,
+        "vagasOcupadas": 55,
+        "disciplina": {
+            "codigo": "ENE0056",
+            "nome":"SISTEMAS MICROPROCESSADOS"
+        }
+    },
+    {
+        "codigo": "B",
+        "vagasOfertadadas": 60,
+        "vagasOcupadas": 36,
+        "disciplina": {
+            "codigo": "ENE0056",
+            "nome":"SISTEMAS MICROPROCESSADOS"
+        }
+    }
+]

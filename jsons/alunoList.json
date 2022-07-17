@@ -1,0 +1,26 @@
+[
+    {
+        "matricula": "180108042",
+        "nome": "Pedro Duarte Alvim",
+        "curso": {
+            "codigo": "X",
+            "nome": "ENGENHARIA DE REDES DE COMUNICAÇÃO"
+        }
+    },
+    {
+        "matricula": "180105442",
+        "nome": "Lucas Rabelo Andrade",
+        "curso": {
+            "codigo": "X",
+            "nome": "ENGENHARIA DE REDES DE COMUNICAÇÃO"
+        }
+    },
+    {
+        "matricula": "160049300",
+        "nome": "Diego Martins de Oliveira",
+        "curso": {
+            "codigo": "X",
+            "nome": "ENGENHARIA DE REDES DE COMUNICAÇÃO"
+        }
+    }
+]

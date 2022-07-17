@@ -1,0 +1,38 @@
+{
+    "codigo": "X",
+    "vagasOfertadadas": 60,
+    "vagasOcupadas": 55,
+    "horarios":{
+        "dia": "segunda,quarta",
+        "horaInicio": "8:00",
+        "horaFim": "9:50",
+        "professor": {
+            "nome": "Ricardo Zelenovsky"
+        },
+        "local": {
+            "localidade": "FT-11/51"
+        }
+    },
+    "periodoLetivo":{
+        "ano": 2022,
+        "numero": 1
+    },
+    "disciplina": {
+        "codigo": "ENE0056",
+        "nome":"SISTEMAS MICROPROCESSADOS",
+        "unidade":{
+            "codigo": "ENE",
+            "nome": "Departamento de Engenharia Elétrica"
+        },
+        "cargaHoraria":{
+            "teorica":60,
+            "pratica":0
+        },
+        "preRequisitos":[
+            {
+                "codigo":"ENE0039",
+                "nome":"SISTEMAS DIGITAIS"
+            }
+        ]
+    }
+}

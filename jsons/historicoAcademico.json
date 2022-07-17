@@ -1,0 +1,34 @@
+{
+    "disciplinas": [
+        {   
+            "aprovacao": "True",
+            "mencao": "SS",
+            "turma": {
+                "codigo": "X",
+                "disciplina": {
+                    "codigo": "ENE0039",
+                    "nome": "Sistemas Digitais"
+                },
+                "periodoLetivo": {
+                    "ano": 2019,
+                    "numero": 1
+                }
+            }
+        },
+        {
+            "aprovacao": "True",
+            "mencao": "SS",
+            "turma": {
+                "codigo": "X",
+                "disciplina": {
+                    "codigo": "ENE0056",
+                    "nome": "Sistemas Microprocessados"
+                },
+                "periodoLetivo": {
+                    "ano": 2019,
+                    "numero": 2
+                }
+            }
+        }
+    ]
+}

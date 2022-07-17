@@ -1,0 +1,74 @@
+{
+    "codigo": "X",
+    "nome": "ENGENHARIA DE REDES DE COMUNICAÇÃO",
+    "modalidade": "Presencial",
+    "grauAcademico": "Bacharelado",
+    "turno": "Diurno",
+    "sede": "Darcy Ribeiro",
+    "coordenador": {
+        "nome": "Daniel Guerreiro"
+    },
+    "unidades":[
+        {
+            "codigo": "x",
+            "nome": "unidade1"
+        },
+        {
+            "codigo": "y",
+            "nome": "unidade2"
+        }
+    ],
+    "curriculos":[
+        {
+            "codigo": "x",
+            "status": "Ativo",
+            "prazo": {
+                "minimo": 10,
+                "medio": 13,
+                "maximo": 20
+            },
+            "cargaHoraria": {
+                "totalMinima": 1500,
+                "totalObrigatorio": 2250,
+                "optativaMinima": 3750,
+                "complementarMinima": 0,
+                "minimaPeriodoLetivo": 120,
+                "maximaPeriodoLetivo": 450
+
+            },
+            "periodoLetivoVigencialInicial": {
+                "ano": 2018,
+                "numero": 2
+            },
+            "disciplinas": [
+                {
+                  "tipo": "?",
+                  "nivel": "superior",
+                  "modalidade": "Presencial",
+                  "disciplina": {
+                    "codigo": "ENE0039",
+                    "nome": "Sistemas Digitais"
+                  }  
+                },
+                {
+                    "tipo": "?",
+                    "nivel": "superior",
+                    "modalidade": "Presencial",
+                    "disciplina": {
+                        "codigo": "ENE0056",
+                        "nome": "Sistemas Microprocessados"
+                    }  
+                  },
+                  {
+                    "tipo": "?",
+                    "nivel": "superior",
+                    "modalidade": "Presencial",
+                    "disciplina": {
+                      "codigo": "ENE0091",
+                      "nome": "Sistemas Operacionais de Redes"
+                    }  
+                  }
+            ]
+        }
+    ]
+}
