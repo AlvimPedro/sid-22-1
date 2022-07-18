@@ -1,20 +1,102 @@
 swagger: "2.0"
 info:
-  title: SID
+  description: preecnher descrição
+  title: Graduação
   version: "1.0"
+  termsOfService: https://sid.redes.unb.br/termos
+  contact:
+    email: 180108042@aluno.unb.br
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  
+host: sid.redes.unb.br:443
+basePath: /api/graduacao/dlp
+tags:
+  - name: Aluno
+  - name: Curso
+  - name: Disciplina
+  - name: Histórico Acadêmico
+  - name: Martrícula
+  - name: Tuma
+
+schemes:
+  - https
+  - http
+
+consumes:
+  - application/json
+produces:
+  - application/json
+
 paths:
-  /:
+  /Aluno:
     get:
+      summary: Pesquisa Alunos
+      description: ''
+      operationId: searchAluno
+      tags:
+      - Aluno
       parameters:
-      - in: query
-        type: string
-        name: 'unidade'
+      - name: nome
+        in: query
+        description: (Parte do) nome dos alunos
         required: false
+        type: string
+      - name: curriculo
+        in: query
+        description: (Parte do) nome dos alunos
+        required: false
+        type: string
+      - name: curso
+        in: query
+        description: código do curso dos alunos
+        required: false
+        type: string
+      - name: unidade
+        in: query
+        description: código da unidade (do curso) dos alunos
+        required: false
+        type: string
       responses:
         200:
           description: Ok
           schema:
-            $ref: '#/definitions/DisciplinaList'
+            $ref: '#/definitions/Aluno'
+        404:
+          description: not found
+
+  /Aluno/{id}:
+    parameters:
+      - name: id
+        in: path
+        description: Matrícula do Aluno
+        required: true
+        type: string
+    get:
+      tags:
+      - Aluno
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: '#/definitions/Aluno'
+
+  /Curso:
+    get:
+      tags:
+      - Curso
+      parameters:
+      - name: nome
+        in: query
+        description: (Parte do) nome do curso
+        required: false
+        type: string
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: '#/definitions/Curso'
 
   /{codigo}:
     get:
@@ -158,6 +240,19 @@ definitions:
       curriculos:
         $ref: '#/definitions/EstruturaCurricular'
 
+  CursoShort:
+    type: object
+    properties:
+      codigo:
+        type: string
+      nome:
+        type: string
+
+  CursoList:
+    type: array
+    items:
+      $ref: '#/definitions/CursoShort'
+
   Coordenador:
     type: object
     properties:
@@ -177,6 +272,19 @@ definitions:
         type: number
       periodoLetivo:
         $ref: '#/definitions/PeriodoLetivo'
+    
+  AlunoShort:
+    type: object
+    properties:
+      matricula:
+        type: string
+      nome:
+        type: string
+  
+  AlunoList:
+    type: array
+    items:
+      $ref: '#/definitions/AlunoShort'
     
   Matricula:
     type: object
