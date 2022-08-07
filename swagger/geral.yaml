@@ -82,6 +82,64 @@ paths:
           schema:
             $ref: '#/definitions/Aluno'
 
+  /AlunoList:
+    get:
+      summary: Pesquisa Alunos
+      description: ''
+      operationId: listAlunos
+      tags:
+      - Aluno
+      parameters:
+      - name: nome
+        in: query
+        description: (Parte do) nome dos alunos
+        required: false
+        type: string
+      - name: matricula
+        in: query
+        description: matricula
+        required: false
+        type: string
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: '#/definitions/AlunoList'
+        404:
+          description: not found
+
+  /AlunoList/{nome}:
+    parameters:
+      - name: nome
+        in: path
+        description: (Parte do) nome do Aluno
+        required: true
+        type: string
+    get:
+      tags:
+      - Aluno
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: '#/definitions/AlunoList'
+            
+  /AlunoList/{matricula}:
+    parameters:
+      - name: matricula
+        in: path
+        description: Matrícula do Aluno
+        required: true
+        type: string
+    get:
+      tags:
+      - Aluno
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: '#/definitions/AlunoList'
+
   /Curso:
     get:
       tags:
@@ -98,7 +156,7 @@ paths:
           schema:
             $ref: '#/definitions/Curso'
 
-  /{codigo}:
+  /Curso/{codigo}:
     get:
       parameters:
       - in: path
@@ -109,7 +167,41 @@ paths:
         200:
           description: Ok
           schema:
-            $ref: '#/definitions/Disciplina'
+            $ref: '#/definitions/Curso'
+
+  /CursoList:
+    get:
+      parameters:
+      - name: nome
+        in: query
+        description: (Parte do) nome do curso
+        required: false
+        type: string
+      - name: codigo
+        in: query
+        description: (Parte do) nome do curso
+        required: false
+        type: string
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: '#/definitions/CursoList'
+
+  /CursoList/{nome}:
+    get:
+      parameters:
+      - name: nome
+        in: path
+        description: (Parte do) nome do curso
+        required: true
+        type: string
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: '#/definitions/CursoList'
+            
 definitions:
   Disciplina:
     type: object
@@ -356,8 +448,3 @@ definitions:
         type: string
       turma:
         $ref: '#/definitions/Turma'
-
-    
-
-
-  
