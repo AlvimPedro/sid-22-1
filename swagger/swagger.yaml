@@ -783,7 +783,7 @@ definitions:
     type: object
     properties:
       aluno:
-        $ref: '#/definitions/Aluno'
+        $ref: '#/definitions/AlunoShort'
       disciplinas:
         type: array
         items:

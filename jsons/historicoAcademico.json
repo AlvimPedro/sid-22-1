@@ -1,4 +1,12 @@
 {
+    "aluno": {
+        "matricula": "180108042",
+        "nome": "Pedro Duarte Alvim",
+        "curso": {
+            "codigo": "X",
+            "nome": "ENGENHARIA DE REDES DE COMUNICAÇÃO"
+        }
+    },
     "disciplinas": [
         {   
             "aprovacao": "True",
